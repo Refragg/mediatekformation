@@ -23,3 +23,9 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+# JetBrains IDEs
+.idea/**
+
+# Sonarscanner
+.scannerwork/**
