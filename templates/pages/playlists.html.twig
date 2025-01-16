@@ -33,7 +33,9 @@
                     </form>            
                 </th>
                 <th class="text-center align-top" scope="col">
-                    &nbsp;
+                    nb formations<br/>
+                    <a href="{{ path('playlists.sort', {champ:'count', ordre:'ASC'}) }}" class="btn btn-info btn-sm active"><</a>
+                    <a href="{{ path('playlists.sort', {champ:'count', ordre:'DESC'}) }}" class="btn btn-info btn-sm active">></a>
                 </th>				
             </tr>
         </thead>
@@ -55,6 +57,11 @@
                                 {% endfor %}
                             {% endif %}
                         </td>            					
+                        <td class="text-center">
+                            <h5>
+                                {{ playlists[k].formationsCount }}
+                            </h5>
+                        </td>
                         <td class="text-center">
                             <a href="{{ path('playlists.showone', {id:playlists[k].id}) }}" class="btn btn-secondary">Voir détail</a>
                         </td> 					

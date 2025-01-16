@@ -66,6 +66,8 @@ class PlaylistsController extends AbstractController {
     public function sort($champ, $ordre): Response{
         if ($champ === 'name') {
             $playlists = $this->playlistRepository->findAllOrderByName($ordre);
+        } elseif ($champ === 'count') {
+            $playlists = $this->playlistRepository->findAllOrderByCount($ordre);
         } else {
             $playlists = $this->playlistRepository->findAll();
         }
