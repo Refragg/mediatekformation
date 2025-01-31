@@ -43,5 +43,51 @@ class CategorieRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
     }
-    
+
+    /**
+     * Retourne toutes les catégories triées sur le nom
+     * @param string $ordre 'ASC' ou 'DESC'
+     * @return Categorie[]
+     */
+    public function findAllOrderBy(string $ordre): array{
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.name', $ordre)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Enregistrements dont le nom contient une valeur
+     * ou tous les enregistrements si la valeur est vide
+     * @param string $valeur
+     * @return Categorie[]
+     */
+    public function findByName(string $valeur): array{
+        if ($valeur == "") {
+            return $this->findAll();
+        }
+
+        return $this->createQueryBuilder('c')
+            ->where('c.name LIKE :valeur')
+            ->orderBy('c.name', 'ASC')
+            ->setParameter('valeur', '%'.$valeur.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Vérifie si une catégorie existe en fonction de son nom
+     * @param string $valeur Le nom de la catégorie à vérifier
+     * @return bool
+     */
+    public function existsByName(string $valeur): bool{
+        $categorie = $this->createQueryBuilder('c')
+            ->where('c.name = :valeur')
+            ->setParameter('valeur', $valeur)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+
+        return count($categorie) != 0;
+    }
 }
