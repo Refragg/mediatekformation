@@ -1,0 +1,82 @@
+{
+  "id": "6f159997-b6f7-4bbb-8867-2786a6203b33",
+  "version": "2.0",
+  "name": "Mediatekformation",
+  "url": "http://localhost/mediatekformation/public/formations",
+  "tests": [{
+    "id": "052f6447-6579-4fc9-9f22-50bccdea0c29",
+    "name": "TestFormations",
+    "commands": [{
+      "id": "46a2c6e6-8f28-40c8-a6c6-176d2457dab8",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/mediatekformation/public/formations",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b60fcf83-6818-4f08-8c0a-69d7d7dc1598",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1549x791",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3987f783-ebf0-4077-8ff8-49e7f98398cf",
+      "comment": "",
+      "command": "click",
+      "target": "name=recherche",
+      "targets": [
+        ["name=recherche", "name"],
+        ["css=.text-left:nth-child(1) .sm", "css:finder"],
+        ["xpath=//input[@name='recherche']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "48e2b631-2faa-46d9-8078-d169bb875608",
+      "comment": "",
+      "command": "type",
+      "target": "name=recherche",
+      "targets": [
+        ["name=recherche", "name"],
+        ["css=.text-left:nth-child(1) .sm", "css:finder"],
+        ["xpath=//input[@name='recherche']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "C#"
+    }, {
+      "id": "65af52c6-e926-4ceb-a62d-1375595b44e8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-left:nth-child(1) > .form-inline .btn",
+      "targets": [
+        ["css=.text-left:nth-child(1) > .form-inline .btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'filtrer')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b5afea7-b54a-42b6-9173-50074e96fcbb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.align-middle:nth-child(6) img",
+      "targets": [
+        ["css=.align-middle:nth-child(6) img", "css:finder"],
+        ["xpath=(//img[@alt='Miniature formation'])[6]", "xpath:img"],
+        ["xpath=//tr[6]/td[5]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "3460f00f-9131-4671-9b83-98b6b824a464",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost/mediatekformation/public", "http://localhost/mediatekformation/public/formations"],
+  "plugins": []
+}
