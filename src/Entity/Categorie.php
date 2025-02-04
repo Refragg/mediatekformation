@@ -7,23 +7,38 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Entité représentant une catégorie
+ */
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
 {
+    /**
+     * L'identifiant de la catégorie
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * Le nom de la catégorie
+     * @var string|null
+     */
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $name = null;
 
     /**
+     * Les formations contenues dans la catégorie
      * @var Collection<int, Formation>
      */
     #[ORM\ManyToMany(targetEntity: Formation::class, mappedBy: 'categories')]
     private Collection $formations;
 
+    /**
+     * Constructeur de l'entité
+     */
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -54,6 +69,11 @@ class Categorie
         return $this->formations;
     }
 
+    /**
+     * Ajoute une formation aux formations de la catégorie
+     * @param Formation $formation La formation à ajouter
+     * @return $this
+     */
     public function addFormation(Formation $formation): static
     {
         if (!$this->formations->contains($formation)) {
@@ -64,6 +84,11 @@ class Categorie
         return $this;
     }
 
+    /**
+     * Supprime une formation des formations de la catégorie
+     * @param Formation $formation La formation à supprimer
+     * @return $this
+     */
     public function removeFormation(Formation $formation): static
     {
         if ($this->formations->removeElement($formation)) {

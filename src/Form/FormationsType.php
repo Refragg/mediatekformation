@@ -13,8 +13,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Classe représentant le formulaire d'ajout / modification d'une formation
+ */
 class FormationsType extends AbstractType
 {
+    /**
+     * Construction du formulaire
+     * @param FormBuilderInterface $builder Injecté par Symfony
+     * @param array $options Injecté par Symfony
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

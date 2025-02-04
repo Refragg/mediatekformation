@@ -14,18 +14,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccueilController extends AbstractController{
     
     /**
+     * L'objet faisant l'interface entre les données des formations et le contrôleur
      * @var FormationRepository
      */
     private $repository;
     
     /**
-     *
-     * @param FormationRepository $repository
+     * Constructeur du contrôleur
+     * @param FormationRepository $repository Injecté par Symfony
      */
     public function __construct(FormationRepository $repository) {
         $this->repository = $repository;
     }
-    
+
+    /**
+     * Route affichant la page d'accueil
+     * @return Response
+     */
     #[Route('/', name: 'accueil')]
     public function index(): Response{
         $formations = $this->repository->findAllLasted(2);
@@ -33,7 +38,11 @@ class AccueilController extends AbstractController{
             'formations' => $formations
         ]);
     }
-    
+
+    /**
+     * Route affichant les conditions générales d'utilisation
+     * @return Response
+     */
     #[Route('/cgu', name: 'cgu')]
     public function cgu(): Response{
         return $this->render("pages/cgu.html.twig");

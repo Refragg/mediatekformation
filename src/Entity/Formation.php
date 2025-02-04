@@ -9,6 +9,9 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Entité représentant une formation
+ */
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
 class Formation
 {
@@ -17,34 +20,62 @@ class Formation
      * Début de chemin vers les images
      */
     private const CHEMIN_IMAGE = "https://i.ytimg.com/vi/";
-        
+
+    /**
+     * L'identifiant de la formation
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * La date de publication de la formation
+     * @var \DateTimeInterface|null
+     */
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Assert\LessThanOrEqual(['value' => 'now'])]
     private ?\DateTimeInterface $publishedAt = null;
 
+    /**
+     * Le titre de la formation
+     * @var string|null
+     */
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $title = null;
 
+    /**
+     * La description de la formation
+     * @var string|null
+     */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    /**
+     * L'identifiant de la vidéo de la formation
+     * @var string|null
+     */
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $videoId = null;
 
+    /**
+     * La playlist à laquelle la formation appartient
+     * @var Playlist|null
+     */
     #[ORM\ManyToOne(inversedBy: 'formations')]
     private ?Playlist $playlist = null;
 
     /**
+     * Les catégories de la formation
      * @var Collection<int, Categorie>
      */
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'formations')]
     private Collection $categories;
 
+    /**
+     * Constructeur de l'entité
+     */
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -140,6 +171,11 @@ class Formation
         return $this->categories;
     }
 
+    /**
+     * Ajoute une catégorie aux catégories de la formation
+     * @param Categorie $category La catégorie à ajouter
+     * @return $this
+     */
     public function addCategory(Categorie $category): static
     {
         if (!$this->categories->contains($category)) {
@@ -149,6 +185,11 @@ class Formation
         return $this;
     }
 
+    /**
+     * Supprime une catégorie des catégories de la formation
+     * @param Categorie $category La catégorie à supprimer
+     * @return $this
+     */
     public function removeCategory(Categorie $category): static
     {
         $this->categories->removeElement($category);
