@@ -1,0 +1,18 @@
+on: push
+name: Déploiement du site après push
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du code source
+        uses: actions/checkout@v2
+        
+      - name: Synchronisation des fichiers
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.ftp_server }}
+          server-dir: ${{ secrets.ftp_server_dir }}
+          port: ${{ secrets.ftp_port }}
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
