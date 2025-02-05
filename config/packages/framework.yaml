@@ -1,5 +1,12 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
+    # reverse proxy configuration (https://symfony.com/doc/6.4/deployment/proxies.html)
+    # trust all private network ip addresses
+    trusted_proxies: '172.16.0.0/12,192.168.0.0/16,10.0.0.0/8'
+    # trust *all* "X-Forwarded-*" headers
+    trusted_headers: [ 'x-forwarded-for', 'x-forwarded-host', 'x-forwarded-proto', 'x-forwarded-port', 'x-forwarded-prefix' ]
+    # this configuration will still work without a reverse proxy (i.e.: when testing locally)
+
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
     annotations: false
