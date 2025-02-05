@@ -47,6 +47,16 @@ class AdminFormationsController extends AbstractController
     }
 
     /**
+     * Route d'index pour l'administration du site
+     * @return Response
+     */
+    #[Route('/admin', name: 'admin')]
+    public function indexAdmin(): Response
+    {
+        return $this->redirectToRoute('admin.formations');
+    }
+
+    /**
      * Route d'index pour l'administration des formations
      * @return Response
      */
