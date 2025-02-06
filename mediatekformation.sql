@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 13 mai 2024 à 15:26
 -- Version du serveur : 8.2.0
+-- Généré le : jeu. 06 fév. 2025 à 15:47
 -- Version de PHP : 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -31,10 +31,10 @@ USE `mediatekformation`;
 
 DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -59,9 +59,9 @@ INSERT INTO `categorie` (`id`, `name`) VALUES
 
 DROP TABLE IF EXISTS `doctrine_migration_versions`;
 CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `version` varchar(191) NOT NULL,
   `executed_at` datetime DEFAULT NULL,
-  `execution_time` int DEFAULT NULL,
+  `execution_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
@@ -70,7 +70,8 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20240513134621', '2024-05-13 13:47:49', 1145);
+('DoctrineMigrations\\Version20240513134621', '2024-05-13 13:47:49', 1145),
+('DoctrineMigrations\\Version20250131094007', '2025-01-31 09:40:13', 40);
 
 -- --------------------------------------------------------
 
@@ -80,15 +81,15 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 
 DROP TABLE IF EXISTS `formation`;
 CREATE TABLE IF NOT EXISTS `formation` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `playlist_id` int DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `playlist_id` int(11) DEFAULT NULL,
   `published_at` datetime DEFAULT NULL,
-  `title` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
-  `video_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `video_id` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_404021BF6BBD148` (`playlist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `formation`
@@ -122,7 +123,6 @@ INSERT INTO `formation` (`id`, `playlist_id`, `published_at`, `title`, `descript
 (26, 3, '2019-12-02 10:46:38', 'Python n°17 : Décorateur exemple simple', 'Décorateur pour calculer le temps d\'exécution de fonctions. Exemple montrant la différence de performance entre 2 types de boucles.', '24_M88Ebyp0'),
 (27, 3, '2019-11-22 11:03:07', 'Python n°16 : Décorateurs', 'Présentation théorique de la notion de décorateurs.', '0bMI9Z1XgIE'),
 (28, 3, '2019-11-20 15:18:21', 'Python n°15 : Paramètres des fonctions', 'Présentation des différentes possibilités de paramètres d\'une fonction : \n- paramètres simples\n- paramètres initialisés\n- paramètres non nommés de nombre variable (liste)\n- paramètres nommés de nombre variable (dictionnaire)', 'EsXg1o3u-g4'),
-(29, 3, '2019-10-28 13:21:15', 'Python n°14 : Héritage', 'Notion d\'héritage, appel du constructeur de la classe mère pour valoriser les propriétés de la classe mère, test du type d\'un objet.\nPour voir ces notions, reprise de l\'exercice de la vidéo 12 sur la création de la classe Personnage :\nhttps://youtu.be/KHsEAuZdS5w\navec ajout des classes filles Mortel et Immortel.', 'hWtHkP9uwR8'),
 (30, 3, '2019-10-25 13:56:29', 'Python n°13 : Encapsulation', 'Technique pour gérer les getter et setter sous Python pour éviter l\'accès direct aux propriétés.\nLa vidéo repart de l\'exercice précédent (12) :\nhttps://youtu.be/KHsEAuZdS5w', 'pLnMkC79i4U'),
 (31, 3, '2019-10-24 10:13:43', 'Python n°12 : Classe et liste d\'objets', 'Initiation à la programmation objet sous Python.\nDécouverte de la création d\'une classe et de la gestion d\'une liste d\'objets de cette classe. Le programme permet de saisir des noms de personnages puis de gérer des attaques entre les personnages, avec la gestion de la vie de chaque personnage.', 'KHsEAuZdS5w'),
 (32, 3, '2019-10-22 11:10:36', 'Python n°11 : dictionnaire et IDE PyCharm', 'Découverte du dictionnaire avec un exercice qui mémorise des villes et la population pour chaque ville.\nUtilisation d\'un nouvel éditeur, un IDE professionnel adapté à Python, PyCharm, récupérable ici :\nhttps://www.jetbrains.com/pycharm/', 'P1iFvYY82i0'),
@@ -199,7 +199,7 @@ INSERT INTO `formation` (`id`, `playlist_id`, `published_at`, `title`, `descript
 (104, 11, '2018-02-04 18:03:43', 'TP Android n°12 : base de données distante MySQL (4)', 'Prérequis : avoir des connaissance en programmation objet (et avoir vu les vidéos précédentes de la construction de l\'application Android)\r\nBut : sous Android Studio, récupération du dernier profil distant dans le thread et affichage des informations dans l\'interface.', 'uNP706aKIRs'),
 (105, 11, '2018-02-02 13:30:29', 'TP Android n°11 : base de données distante MySQL (3)', 'Prérequis : avoir des connaissance en programmation objet, en PHP et MySQL (et avoir vu les vidéos précédentes de la construction de l\'application Android)\r\nBut : sous Android Studio, création la classe AccesDistant qui est en lien avec AccesHTTP pour communiquer avec le serveur distant. Contrôle, dans la console, que la communication marche. Contrôle, dans MySQL, que le profil s\'enregistre.\r\n\r\nERRATUM : 30:10 je dis qu\'il envoie vers le serveur la requête. Ce n\'est pas la requête qui est envoyée mais juste les valeurs du profil. La requête est construite dans la page PHP.', '8Kyq69u9iqU');
 INSERT INTO `formation` (`id`, `playlist_id`, `published_at`, `title`, `description`, `video_id`) VALUES
-(106, 11, '2018-02-01 12:18:38', 'TP Android n°10 : base de données distante MySQL (2)', 'IMPORTANT n°1 : nouvelle classe AccesHTTP à télécharger (voir plus bas) \r\n\r\nIMPORTANT n°2 : si vous n\'arrivez pas à accéder à la base de données :\r\nIl existe maintenant 2 formats de BDD : MySQL et MariaDB, tous les 2 accessibles au même endroit et fonctionnant de façon similaire, mais sur des ports différents.\r\nDans le fichier fonctions.php que vous avez créé, je vous conseille de modifier la variable de connexion par :\r\n$conn = new PDO(\"mysql:host=$serveur;dbname=$bd;port=3308\", $login, $mdp);\r\nEn fait, si vous avez créer la base sous MariaDB (actuellement par défaut) le port est celui par défaut : 3306. Si vous avez sélectionné MySQL, normalement le nouveau port est 3308. Ca vaut d\'ailleurs le coup aussi de tester les 2...\r\n\r\n\r\n\r\n Prérequis : avoir des connaissance en programation objet (et avoir vu les vidéos précédentes de la construction de l\'application Android)\r\nBut : sous Android Studio, faire les bons paramétrages et créer les classes outils nécessaires pour l\'accès au serveur distant via Internet et le protocole HTTP.*\r\nERRATUM : à 22:09 je dis par erreur que onPostExecute est appelé par le execute de la classe mère. C\'est doInBackground qui est appelé par execute de la classe mère. onPostExecute est une méthode événementielle appelée lorsque le serveur renvoie une réponse.\r\n\r\nIMPORTANT :\r\nDans la classe AccesHTTP, j\'utilise des classes qui sont obsolètes et qui peuvent maintenant poser problème. Je ferai une vidéo pour montrer le principe d\'une nouvelle classe AccesHTTP, mais en attendant, je vous donne son code que vous pouvez récupérer ici : \r\nhttp://bit.ly/EmdsNewAccesHTTP\r\nPensez à changer le nom du package (1e ligne).\r\nLa logique est proche de la classe montrée dans la vidéo et normalement vous n\'avez rien à changer dans le reste du programme excepté que vous n\'avez plus besoin de mettre la ligne \'useLibrary \"org.apache.http.legacy\" \' dans build.gradle, comme montré en tout début de vidéo.', 'n5AeP-fqT30'),
+(106, 11, '2018-02-01 12:18:38', 'TP Android n°10 : base de données distante MySQL (2)', 'IMPORTANT n°1 : nouvelle classe AccesHTTP à télécharger (voir plus bas) \r\n\r\nIMPORTANT n°2 : si vous n\'arrivez pas à accéder à la base de données :\r\nIl existe maintenant 2 formats de BDD : MySQL et MariaDB, tous les 2 accessibles au même endroit et fonctionnant de façon similaire, mais sur des ports différents.\r\nDans le fichier fonctions.php que vous avez créé, je vous conseille de modifier la variable de connexion par :\r\n$conn = new PDO(\"mysql:host=$serveur;dbname=$bd;port=3308\", $login, $mdp);\r\nEn fait, si vous avez créer la base sous MariaDB (actuellement par défaut) le port est celui par défaut : 3306. Si vous avez sélectionné MySQL, normalement le nouveau port est 3308. Ca vaut d\'ailleurs le coup aussi de tester les 2...\r\n\r\n\r\n\r\n Prérequis : avoir des connaissance en programation objet (et avoir vu les vidéos précédentes de la construction de l\'application Android)\r\nBut : sous Android Studio, faire les bons paramétrages et créer les classes outils nécessaires pour l\'accès au serveur distant via Internet et le protocole HTTP.*\r\nERRATUM : à 22:09 je dis par erreur que onPostExecute est appelé par le execute de la classe mère. C\'est doInBackground qui est appelé par execute de la classe mère. onPostExecute est une méthode événementielle appelée lorsque le serveur renvoie une réponse.\r\n\r\nIMPORTANT :\r\nDans la classe AccesHTTP, j\'utilise des classes qui sont obsolètes et qui peuvent maintenant poser problème. Je ferai une vidéo pour montrer le principe d\'une nouvelle classe AccesHTTP, mais en attendant, je vous donne son code que vous pouvez récupérer ici : \r\nhttp://bit.ly/EmdsNewAccesHTTP\r\nPensez à changer le nom du package (1e ligne).\r\nLa logique est proche de la classe montrée dans la vidéo et normalement vous n\'avez rien à changer dans le reste du programme excepté que vous n\'avez plus besoin de mettre la ligne \'useLibrary \"org.apache.http.legacy\" \' dans build.gradle, comme montré en tout début de vidéo.', 'n5AeP-fqT30'),
 (107, 11, '2018-01-31 14:20:06', 'TP Android n°9 : base de données distante MySQL (1)', 'Prérequis : de préférence des connaissances de base en PHP et MySQL\r\n\r\nBut : installer WAMP (ou LAMP ou MAMP suivant votre système) pour tester en local, créer une base de données MySQL (en utilisant phpMyAdmin), créer 2 pages php (une pour se connecter à la base de données, une autre pour gérer les demandes de l\'application Android qui voudra enregistrer un profil et récupérer le dernier profil enregistré).\r\nERRATUM : tout à la fin, je parle de \"vidéo précédente\", il est bien sûr question de \"vidéo suivante\".', 'PKd8CEXXyLk'),
 (108, 11, '2018-01-28 14:39:00', 'TP Android n°8 : base de  données locale SQLite', 'Prérequis : connaissances en Java, en programmation objet, en SQL et avoir vu les vidéos précédentes de cette série\r\nBut : Découvrir le fonctionnement d\'une base de données au format SQLite. Créer les classes d\'accès. Manipuler un curseur. Enregistrer les profils et les récupérer. Utiiser un browser externe pour consulter la base de données.', 'vRaR3yLnHig'),
 (109, 11, '2018-01-25 17:47:06', 'TP Android n°7 : persistance par sérialisation', 'Prérequis : connaissances en Java et programmation objet (voir le cours objet et le TP Java) et avoir vu les vidéos précédentes de cette série\r\nBut : enregistrer le profil par sérialisation dans un fichier binaire afin de le récupérer lors de l\'exécution suivante de l\'application. La classe de sérialisation vous est donnée et peut être réutilisée dans n\'importe quelle application Java.', 'pLGSguzM9jU'),
@@ -343,8 +343,8 @@ INSERT INTO `formation` (`id`, `playlist_id`, `published_at`, `title`, `descript
 
 DROP TABLE IF EXISTS `formation_categorie`;
 CREATE TABLE IF NOT EXISTS `formation_categorie` (
-  `formation_id` int NOT NULL,
-  `categorie_id` int NOT NULL,
+  `formation_id` int(11) NOT NULL,
+  `categorie_id` int(11) NOT NULL,
   PRIMARY KEY (`formation_id`,`categorie_id`),
   KEY `IDX_830086E95200282E` (`formation_id`),
   KEY `IDX_830086E9BCF5E72D` (`categorie_id`)
@@ -388,8 +388,6 @@ INSERT INTO `formation_categorie` (`formation_id`, `categorie_id`) VALUES
 (26, 4),
 (27, 4),
 (28, 4),
-(29, 4),
-(29, 7),
 (30, 4),
 (31, 4),
 (31, 7),
@@ -641,10 +639,10 @@ INSERT INTO `formation_categorie` (`formation_id`, `categorie_id`) VALUES
 
 DROP TABLE IF EXISTS `messenger_messages`;
 CREATE TABLE IF NOT EXISTS `messenger_messages` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `headers` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue_name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `body` longtext NOT NULL,
+  `headers` longtext NOT NULL,
+  `queue_name` varchar(190) NOT NULL,
   `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
   `available_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
   `delivered_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
@@ -662,11 +660,11 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
 
 DROP TABLE IF EXISTS `playlist`;
 CREATE TABLE IF NOT EXISTS `playlist` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `playlist`
@@ -700,7 +698,30 @@ INSERT INTO `playlist` (`id`, `name`, `description`) VALUES
 (25, 'Cours Merise/2', 'La playlist contient :\r\n- la nouvelle version du cours en une seule vidéo\r\n\r\nLien vers le pdf du cours :\r\nhttp://bit.ly/EmdsMerise2'),
 (26, 'Cours Modèle relationnel et MCD', 'La playlist contient :\r\n- la nouvelle version du cours en une seule vidéo (1h08)\r\n\r\nLien vers le pdf du cours :\r\nhttp://bit.ly/EmdsMCD'),
 (27, 'Cours de programmation objet', 'La playlist contient :\r\n- la nouvelle version du cours en une seule vidéo\r\n\r\nLien vers le pdf du cours :\r\nhttp://bit.ly/EmdsObjet'),
-(28, 'playlist test', 'description playlist test');
+(32, 'playlist test', 'la playlist de test');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(180) NOT NULL,
+  `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`roles`)),
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_IDENTIFIER_USERNAME` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
+(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$./h60g/JNKFOrdZsyN7RLe1ilWGOX/vmOaA8en4UjoEyuLoXmMQB2');
 
 --
 -- Contraintes pour les tables déchargées
