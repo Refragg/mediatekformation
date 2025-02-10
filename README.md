@@ -1,6 +1,8 @@
 # Mediatekformation
 ## Présentation
 La présentation du site globale est présente sur [le dépôt GitHub d'origine](https://github.com/cned-slam/mediatekformation?tab=readme-ov-file#mediatekformation).
+## Accès au site
+Le site est accessible depuis [mediatekformation.jfrancart.fr](https://mediatekformation.jfrancart.fr)
 ## Présentation des nouvelles fonctionnalités
 La partie back-office à été développée complètement. Elle contient les fonctionnalités globales suivantes :<br>
 ![Cas d'utilisation administration du site](https://github.com/user-attachments/assets/2b96f171-fef5-45df-8189-b657ef1abfd5)
